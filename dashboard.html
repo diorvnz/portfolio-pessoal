@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTech Analytics - Dashboard Financeiro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 hidden md:flex flex-col justify-between p-4">
+    <div>
+      <div class="flex items-center gap-3 px-2 py-4">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white text-xl">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <span class="font-bold text-xl tracking-wide text-white">FinTech<span class="text-indigo-400">Pro</span></span>
+      </div>
+
+      <nav class="mt-8 space-y-2">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-600/20 text-indigo-400 font-medium">
+          <i class="fa-solid fa-house"></i> Visão Geral
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+          <i class="fa-solid fa-wallet"></i> Carteira
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+          <i class="fa-solid fa-arrow-left-right"></i> Transações
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+          <i class="fa-solid fa-chart-pie"></i> Relatórios
+        </a>
+      </nav>
+    </div>
+
+    <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50">
+      <p class="text-xs text-slate-400">Desenvolvido por</p>
+      <p class="text-sm font-semibold text-white">Carolini De Lira Silva</p>
+    </div>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-white">Painel Financeiro & Analytics</h1>
+        <p class="text-slate-400 text-sm">Resumo de receitas, despesas e fluxo de caixa mensal</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-4 py-2.5 rounded-xl flex items-center gap-2 transition text-sm">
+          <i class="fa-solid fa-plus"></i> Nova Transação
+        </button>
+      </div>
+    </header>
+
+    <!-- Cards Kpi -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-slate-400 text-sm font-medium">Saldo Total</span>
+          <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </span>
+        </div>
+        <p class="text-3xl font-bold text-white mb-2">R$ 48.250,00</p>
+        <p class="text-xs text-emerald-400 font-medium flex items-center gap-1">
+          <i class="fa-solid fa-arrow-trend-up"></i> +12.4% em relação ao mês anterior
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-slate-400 text-sm font-medium">Receitas (Mês)</span>
+          <span class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+            <i class="fa-solid fa-arrow-up-long"></i>
+          </span>
+        </div>
+        <p class="text-3xl font-bold text-white mb-2">R$ 18.400,00</p>
+        <p class="text-xs text-emerald-400 font-medium flex items-center gap-1">
+          <i class="fa-solid fa-arrow-trend-up"></i> +8.1% vs meta esperada
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-slate-400 text-sm font-medium">Despesas (Mês)</span>
+          <span class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center">
+            <i class="fa-solid fa-arrow-down-long"></i>
+          </span>
+        </div>
+        <p class="text-3xl font-bold text-white mb-2">R$ 6.150,00</p>
+        <p class="text-xs text-rose-400 font-medium flex items-center gap-1">
+          <i class="fa-solid fa-arrow-trend-down"></i> -3.2% economizados no orçamento
+        </p>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div class="lg:col-span-2 bg-slate-900 p-6 rounded-2xl border border-slate-800">
+        <h2 class="text-lg font-bold text-white mb-4">Fluxo de Caixa Anual</h2>
+        <div class="h-64">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+        <h2 class="text-lg font-bold text-white mb-4">Distribuição de Gastos</h2>
+        <div class="h-64 flex items-center justify-center">
+          <canvas id="expenseChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabela de Transações -->
+    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+      <h2 class="text-lg font-bold text-white mb-4">Últimas Transações</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="bg-slate-800/50 text-slate-400 uppercase text-xs">
+            <tr>
+              <th class="p-3 rounded-l-xl">Descrição</th>
+              <th class="p-3">Categoria</th>
+              <th class="p-3">Data</th>
+              <th class="p-3">Status</th>
+              <th class="p-3 rounded-r-xl text-right">Valor</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr>
+              <td class="p-3 font-medium text-white">Projeto E-commerce Client X</td>
+              <td class="p-3 text-slate-400">Desenvolvimento</td>
+              <td class="p-3 text-slate-400">18 Out 2026</td>
+              <td class="p-3"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400">Concluído</span></td>
+              <td class="p-3 text-right font-bold text-emerald-400">+ R$ 8.500,00</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-white">Assinatura AWS & Servidores</td>
+              <td class="p-3 text-slate-400">Infraestrutura</td>
+              <td class="p-3 text-slate-400">15 Out 2026</td>
+              <td class="p-3"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400">Concluído</span></td>
+              <td class="p-3 text-right font-bold text-rose-400">- R$ 420,00</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-white">Consultoria de Marketing Digital</td>
+              <td class="p-3 text-slate-400">Serviços</td>
+              <td class="p-3 text-slate-400">12 Out 2026</td>
+              <td class="p-3"><span class="px-2 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400">Pendente</span></td>
+              <td class="p-3 text-right font-bold text-emerald-400">+ R$ 3.200,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Gráfico de Linha (Fluxo de Caixa)
+    const ctx1 = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
+        datasets: [{
+          label: 'Receita (R$)',
+          data: [12000, 15000, 14000, 18000, 16000, 21000, 19000, 24000, 22000, 26000],
+          borderColor: '#6366f1',
+          backgroundColor: 'rgba(99, 102, 241, 0.1)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+
+    // Gráfico de Rosca (Despesas)
+    const ctx2 = document.getElementById('expenseChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['Servidores', 'Software', 'Marketing', 'Outros'],
+        datasets: [{
+          data: [40, 25, 20, 15],
+          backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  </script>
+</body>
+</html>
